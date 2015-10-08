@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from client import Client
+from client import Client, DELETE, HEAD, GET, POST, PUT
 from exception import *
 from model import *
 
