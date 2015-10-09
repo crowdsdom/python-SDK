@@ -18,7 +18,15 @@ class EndPoint(object):
             self.endpoint = '%s/%s' % (base_url, name)
 
     def __getattr__(self, attr):
-        return EndPoint(attr, self.client, self.name)
+        if self.parent:
+            parent = '%s/%s' % (self.parent, self.name)
+        else:
+            parent = self.name
+        return EndPoint(attr, self.client, parent)
 
     def __getitem__(self, name):
-        return EndPoint(name, self.client, self.name)
+        if self.parent:
+            parent = '%s/%s' % (self.parent, self.name)
+        else:
+            parent = self.name
+        return EndPoint(name, self.client, parent)
