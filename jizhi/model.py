@@ -9,9 +9,9 @@ class EndPoint(object):
         self.client = client
         self.parent = parent
         if client.version:
-            base_url = '%s/api/%s' % (client.host, client.version)
+            base_url = '%s/api/%s' % (client.api_host, client.version)
         else:
-            base_url = '%s/api' % (client.host)
+            base_url = '%s/api' % (client.api_host)
         if parent:
             self.endpoint = '%s/%s/%s' % (base_url, parent, name)
         else:
@@ -19,3 +19,6 @@ class EndPoint(object):
 
     def __getattr__(self, attr):
         return EndPoint(attr, self.client, self.name)
+
+    def __getitem__(self, name):
+        return EndPoint(name, self.client, self.name)

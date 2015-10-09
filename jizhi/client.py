@@ -8,7 +8,7 @@ import model
 
 def parse_response(func):
     def new_func(self, *args, **kwargs):
-        headers = kwargs.get('headers', {})
+        headers = kwargs.get('headers', None) or {}
         if self.access_token:
             headers['Authorization'] = self.access_token
             kwargs['headers'] = headers
@@ -28,10 +28,13 @@ def parse_response(func):
 
 class Client(object):
     def __init__(self, client_id, client_secret,
-                 host='http://account.crowdsdom.com', version=''):
+                 auth_host='http://account.crowdsdom.com',
+                 api_host='https://developer.crowdsdom.com',
+                 version=''):
         self.__client_id = client_id
         self.__client_secret = client_secret
-        self.host = host
+        self.auth_host = auth_host
+        self.api_host = api_host
         self.version = version
         self.access_token = None
         self._token = None
@@ -46,7 +49,7 @@ class Client(object):
         return token
 
     def fetch_access_token(self):
-        token_url = "%s/oauth/token" % (self.host)
+        token_url = "%s/oauth/token" % (self.auth_host)
         self._token = self.post(
             token_url,
             {
@@ -58,33 +61,30 @@ class Client(object):
         self.access_token = self._token['access_token']['id']
         return self.access_token
 
-    @parse_response
     def delete(self, url, query=None, body=None, headers=None, *args, **kwargs):
-        return requests.post(url, params=query, data=body, headers=headers, *args, **kwargs)
+        return self.request('delete', url, params=query, data=body, headers=headers, *args, **kwargs)
 
-    @parse_response
     def get(self, url, query=None, headers=None):
-        return requests.get(url, params=query, headers=headers)
+        return self.request('get', url, params=query, headers=headers)
 
-    @parse_response
     def head(self, url, query=None, headers=None):
-        return requests.head(url, params=query, headers=headers)
+        return self.request('head', url, params=query, headers=headers)
 
-    @parse_response
     def post(self, url, body=None, files=None, query=None, headers=None):
-        return requests.post(url, data=body, files=files, params=query, headers=headers)
+        return self.request('post', url, data=body, files=files, params=query, headers=headers)
 
-    @parse_response
     def put(self, url, body=None, files=None, query=None, headers=None):
-        return requests.put(url, data=body, files=files, params=query, headers=headers)
+        return self.request('put', url, data=body, files=files, params=query, headers=headers)
 
-    @parse_response
     def options(self, url, query=None, *args, **kwargs):
-        return requests.options(url, params=query, *args, **kwargs)
+        return self.request('options', url, params=query, *args, **kwargs)
+
+    def patch(self, url, query=None, body=None, *args, **kwargs):
+        return self.patch('patch', url, params=query, data=body, *args, **kwargs)
 
     @parse_response
-    def patch(self, url, query=None, body=None, *args, **kwargs):
-        return requests.patch(url, params=query, data=body, *args, **kwargs)
+    def request(self, method, url, *args, **kwargs):
+        return requests.request(method, url, **kwargs)
 
     def __getitem__(self, name):
         return model.EndPoint(name, self)
