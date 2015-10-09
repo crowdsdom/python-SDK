@@ -80,7 +80,7 @@ class Client(object):
         return self.request('options', url, params=query, *args, **kwargs)
 
     def patch(self, url, query=None, body=None, *args, **kwargs):
-        return self.patch('patch', url, params=query, data=body, *args, **kwargs)
+        return self.request('patch', url, params=query, data=body, *args, **kwargs)
 
     @parse_response
     def request(self, method, url, *args, **kwargs):

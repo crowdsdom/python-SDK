@@ -3,7 +3,7 @@
 
 import unittest
 from helper import APP_KEY, APP_SECRET, AUTH_HOST, API_HOST, VERSION, BASE_URL
-from jizhi import Client, GET, POST, PUT, DELETE, HEAD
+from jizhi import Client, GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH
 
 c = Client(APP_KEY, APP_SECRET, AUTH_HOST, API_HOST, VERSION)
 c.set_access_token('token')
@@ -81,6 +81,24 @@ class TestEndPoint(unittest.TestCase):
         Users = c['Users']
         res = DELETE(Users['12345'])
         self.assertEqual(res.request.method, 'DELETE')
+        self.assertEqual(res.request.url, "%s/Users/12345" % (BASE_URL))
+
+    def test_options_request(self):
+        """
+        OPTIONS /Users/id
+        """
+        Users = c['Users']
+        res = OPTIONS(Users['12345'])
+        self.assertEqual(res.request.method, 'OPTIONS')
+        self.assertEqual(res.request.url, "%s/Users/12345" % (BASE_URL))
+
+    def test_patch_request(self):
+        """
+        PATCH /Users/id
+        """
+        Users = c['Users']
+        res = PATCH(Users['12345'])
+        self.assertEqual(res.request.method, 'PATCH')
         self.assertEqual(res.request.url, "%s/Users/12345" % (BASE_URL))
 
     def test_endpoint(self):
