@@ -2,16 +2,21 @@
 # encoding: utf-8
 
 import requests
-import exception
-import model
+import json
+from . import exception
+from . import model
 
 
 def parse_response(func):
     def new_func(self, *args, **kwargs):
         headers = kwargs.get('headers', None) or {}
+        headers['Content-Type'] = 'application/json'
         if self.access_token:
             headers['Authorization'] = self.access_token
-            kwargs['headers'] = headers
+        kwargs['headers'] = headers
+        body = kwargs.get('data', None)
+        if isinstance(body, (dict, list)):
+            kwargs['data'] = json.dumps(body)
         res = func(self, *args, **kwargs)
         try:
             data = res.json()
