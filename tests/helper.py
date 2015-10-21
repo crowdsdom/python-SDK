@@ -9,10 +9,10 @@ from jizhi import Client
 
 APP_KEY = 'your client app key'
 APP_SECRET = 'your client app secret'
-AUTH_HOST = 'http://account.crowdsdom.com'
-API_HOST = 'https://developer.crowdsdom.com'
+AUTH_HOST = 'https://account.crowdsdom.com'
+API_HOST = 'https://api.crowdsdom.com'
 VERSION = 'v1'
-BASE_URL = '%s/api/%s' % (API_HOST, VERSION)
+BASE_URL = '%s/%s/api' % (API_HOST, VERSION)
 
 
 class MockHTTPAdapter(requests.adapters.BaseAdapter):

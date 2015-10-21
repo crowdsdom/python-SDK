@@ -28,9 +28,9 @@ def parse_response(func):
 
 class Client(object):
     def __init__(self, client_id, client_secret,
-                 auth_host='http://account.crowdsdom.com',
-                 api_host='https://developer.crowdsdom.com',
-                 version=''):
+                 auth_host='https://account.crowdsdom.com',
+                 api_host='https://api.crowdsdom.com',
+                 version='v1'):
         self.__client_id = client_id
         self.__client_secret = client_secret
         self.auth_host = auth_host

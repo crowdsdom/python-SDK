@@ -9,7 +9,7 @@ class EndPoint(object):
         self.client = client
         self.parent = parent
         if client.version:
-            base_url = '%s/api/%s' % (client.api_host, client.version)
+            base_url = '%s/%s/api' % (client.api_host, client.version)
         else:
             base_url = '%s/api' % (client.api_host)
         if parent:
