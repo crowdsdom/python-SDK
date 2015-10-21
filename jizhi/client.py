@@ -23,7 +23,7 @@ def parse_response(func):
         except Exception:
             data = None
 
-        if res.status_code != 200 or not data:
+        if res.status_code != 200 or data is None:
             error = data or {'error': res.text}
             raise exception.ApiError(res.reason, res.status_code, error)
 
