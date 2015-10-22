@@ -7,4 +7,4 @@ python:
   - "3.4"
   - "3.5"
 install: "pip install requests>=2.7.0"
-script: "python tests/endpoint.py"
+script: "python setup.py test"
