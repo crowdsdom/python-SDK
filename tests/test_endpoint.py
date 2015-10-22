@@ -2,11 +2,19 @@
 # encoding: utf-8
 
 import unittest
-from helper import APP_KEY, APP_SECRET, AUTH_HOST, API_HOST, VERSION, BASE_URL
+from helper import (APP_KEY, APP_SECRET, AUTH_HOST, API_HOST,
+                    VERSION, BASE_URL, PY2, PY3, mock_request)
 from jizhi import Client, GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH
 
 c = Client(APP_KEY, APP_SECRET, AUTH_HOST, API_HOST, VERSION)
 c.set_access_token('token')
+
+if PY2:
+    import new
+    c.request = new.instancemethod(mock_request, c, Client)
+if PY3:
+    import types
+    c.request = types.MethodType(mock_request, c)
 
 
 class TestEndPoint(unittest.TestCase):
