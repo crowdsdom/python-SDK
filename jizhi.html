@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>jizhi package &mdash; jizhi 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="jizhi 0.1.0 documentation" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="jizhi-package">
+<h1>jizhi package<a class="headerlink" href="#jizhi-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-jizhi.client">
+<span id="jizhi-client-module"></span><h2>jizhi.client module<a class="headerlink" href="#module-jizhi.client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="jizhi.client.Client">
+<em class="property">class </em><code class="descclassname">jizhi.client.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>client_id</em>, <em>client_secret</em>, <em>auth_host='https://account.crowdsdom.com'</em>, <em>api_host='https://api.crowdsdom.com'</em>, <em>version='v1'</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.Client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="jizhi.client.Client.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>url</em>, <em>query=None</em>, <em>body=None</em>, <em>headers=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.Client.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="jizhi.client.Client.fetch_access_token">
+<code class="descname">fetch_access_token</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.Client.fetch_access_token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="jizhi.client.Client.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>url</em>, <em>query=None</em>, <em>headers=None</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.Client.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="jizhi.client.Client.get_access_token">
+<code class="descname">get_access_token</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.Client.get_access_token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="jizhi.client.Client.head">
+<code class="descname">head</code><span class="sig-paren">(</span><em>url</em>, <em>query=None</em>, <em>headers=None</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.Client.head" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="jizhi.client.Client.options">
+<code class="descname">options</code><span class="sig-paren">(</span><em>url</em>, <em>query=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.Client.options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="jizhi.client.Client.patch">
+<code class="descname">patch</code><span class="sig-paren">(</span><em>url</em>, <em>query=None</em>, <em>body=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.Client.patch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="jizhi.client.Client.post">
+<code class="descname">post</code><span class="sig-paren">(</span><em>url</em>, <em>body=None</em>, <em>files=None</em>, <em>query=None</em>, <em>headers=None</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.Client.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="jizhi.client.Client.put">
+<code class="descname">put</code><span class="sig-paren">(</span><em>url</em>, <em>body=None</em>, <em>files=None</em>, <em>query=None</em>, <em>headers=None</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.Client.put" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="jizhi.client.Client.request">
+<code class="descname">request</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.Client.request" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="jizhi.client.Client.set_access_token">
+<code class="descname">set_access_token</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.Client.set_access_token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="jizhi.client.HTTP">
+<em class="property">class </em><code class="descclassname">jizhi.client.</code><code class="descname">HTTP</code><span class="sig-paren">(</span><em>method</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.HTTP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="jizhi.client.parse_response">
+<code class="descclassname">jizhi.client.</code><code class="descname">parse_response</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.client.parse_response" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-jizhi.exception">
+<span id="jizhi-exception-module"></span><h2>jizhi.exception module<a class="headerlink" href="#module-jizhi.exception" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="jizhi.exception.ApiError">
+<em class="property">exception </em><code class="descclassname">jizhi.exception.</code><code class="descname">ApiError</code><span class="sig-paren">(</span><em>message</em>, <em>status_code</em>, <em>error_data</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.exception.ApiError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#jizhi.exception.BaseError" title="jizhi.exception.BaseError"><code class="xref py py-class docutils literal"><span class="pre">jizhi.exception.BaseError</span></code></a></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="jizhi.exception.BaseError">
+<em class="property">exception </em><code class="descclassname">jizhi.exception.</code><code class="descname">BaseError</code><span class="sig-paren">(</span><em>message</em>, <em>status_code</em>, <em>error_data</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.exception.BaseError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-jizhi.model">
+<span id="jizhi-model-module"></span><h2>jizhi.model module<a class="headerlink" href="#module-jizhi.model" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="jizhi.model.EndPoint">
+<em class="property">class </em><code class="descclassname">jizhi.model.</code><code class="descname">EndPoint</code><span class="sig-paren">(</span><em>name</em>, <em>client</em>, <em>parent=''</em><span class="sig-paren">)</span><a class="headerlink" href="#jizhi.model.EndPoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>the api endpoint</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-jizhi">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-jizhi" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">jizhi package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-jizhi.client">jizhi.client module</a></li>
+<li><a class="reference internal" href="#module-jizhi.exception">jizhi.exception module</a></li>
+<li><a class="reference internal" href="#module-jizhi.model">jizhi.model module</a></li>
+<li><a class="reference internal" href="#module-jizhi">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/jizhi.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Jizhi Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      
+      |
+      <a href="_sources/jizhi.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>jizhi python-SDK &mdash; jizhi 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="jizhi 0.1.0 documentation" href="#" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="jizhi-python-sdk">
+<h1>jizhi python-SDK<a class="headerlink" href="#jizhi-python-sdk" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>安装<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>所需依赖：</p>
+<ul class="simple">
+<li>python &gt;= 2.6</li>
+<li>requests &gt;= 2.7.0</li>
+</ul>
+<p>使用pip安装:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install jizhi
+</pre></div>
+</div>
+<p>通过源代码安装:</p>
+<div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/crowdsdom/python-SDK
+cd python-SDK
+python setup.py install
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>快速入门<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>首先获取 AccessToken:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">jizhi</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="s">&#39;your client app key&#39;</span><span class="p">,</span> <span class="s">&#39;your client app secret&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">token</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get_access_token</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>如果之前已经获取过 AccessToken ，也可以直接使用:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">set_access_token</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>然后再根据 <a class="reference external" href="http://developer.crowdsdom.com/">http://developer.crowdsdom.com/</a> 的api文档进行相关操作。
+如，发布任务为 <code class="docutils literal"><span class="pre">POST</span> <span class="pre">/Jobs</span></code> ，那么对应操作为:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">jizhi</span> <span class="kn">import</span> <span class="n">POST</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Jobs</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;Jobs&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">job</span> <span class="o">=</span> <span class="n">POST</span><span class="p">(</span><span class="n">Jobs</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">job_settings</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这里任务发布成功会返回一个 json 格式的数据，如果 api 调用失败则会抛出一个 <code class="docutils literal"><span class="pre">jizhi.ApiError</span></code> 的异常。</p>
+<p>因此这里建议进行异常捕获:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">jizhi</span> <span class="kn">import</span> <span class="n">ApiError</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">job</span> <span class="o">=</span> <span class="n">POST</span><span class="p">(</span><span class="n">Jobs</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">job_settings</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">except</span> <span class="n">ApiError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">error_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>任务发布成功之后，可通过 <code class="docutils literal"><span class="pre">GET</span> <span class="pre">/Jobs/:id/tasks</span></code> 查看该任务的结果，对应的操作为:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">jizhi</span> <span class="kn">import</span> <span class="n">GET</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Jobs</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;Jobs&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tasks</span> <span class="o">=</span> <span class="n">GET</span><span class="p">(</span><span class="n">Jobs</span><span class="p">[</span><span class="n">job</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="id3">
+<h3>相关说明<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>jizhi SDK 遵循 RESTful 风格的形式，先通过 client 对象获取到资源对象，然后就可以对该资源对象进行操作。
+如, 通过 <code class="docutils literal"><span class="pre">GET</span> <span class="pre">/Jobs/{id}/tasks/count</span></code> 接口获取 id 为 <code class="docutils literal"><span class="pre">ab2a03fda3300466356</span></code> 的任务结果数，对应的操作为:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">jizhi</span> <span class="kn">import</span> <span class="n">GET</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Jobs</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s">&#39;Jobs&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">GET</span><span class="p">(</span><span class="n">Jobs</span><span class="o">.</span><span class="n">ab2a03fda3300466356</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>如果 id 为数字或者是一个变量，则不能使用 <code class="docutils literal"><span class="pre">getattr</span></code> 方式，此时需要使用 <code class="docutils literal"><span class="pre">getitem</span></code> 方式:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">GET</span><span class="p">(</span><span class="n">Jobs</span><span class="p">[</span><span class="s">&#39;1234567&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>或者:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">job_id</span> <span class="o">=</span> <span class="s">&#39;1234567&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">GET</span><span class="p">(</span><span class="n">Jobs</span><span class="p">[</span><span class="n">job_id</span><span class="p">]</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>例子<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>可以通过 <a class="reference external" href="https://github.com/crowdsdom/python-SDK/tree/master/samples">https://github.com/crowdsdom/python-SDK/tree/master/samples</a> 获取一些事例，
+从而可以快速了解jizhi SDK的使用方法。</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">jizhi python-SDK</a><ul>
+<li><a class="reference internal" href="#id1">安装</a></li>
+<li><a class="reference internal" href="#id2">快速入门</a><ul>
+<li><a class="reference internal" href="#id3">相关说明</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">例子</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Jizhi Inc..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      
+      |
+      <a href="_sources/index.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
