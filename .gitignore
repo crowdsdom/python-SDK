@@ -4,3 +4,4 @@
 build/
 dist/
 jizhi.egg-info/
+_build/
