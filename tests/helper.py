@@ -18,7 +18,7 @@ API_HOST = 'https://api.crowdsdom.com'
 ACCESS_TOKEN = 'token'
 USER_ID = '561c61802b403114006cdf5d'
 VERSION = 'v1'
-BASE_URL = '%s/%s/api' % (API_HOST, VERSION)
+BASE_URL = '%s/%s' % (API_HOST, VERSION)
 
 
 class MockHTTPAdapter(requests.adapters.BaseAdapter):
@@ -53,7 +53,7 @@ FAKER_DATA = {}
 
 
 def faker_data_factory(method, path, data):
-    path = "%s-/%s/api%s" % (method, VERSION, path)
+    path = "%s-/%s%s" % (method, VERSION, path)
     FAKER_DATA[path] = data
 
 faker_data_factory(
